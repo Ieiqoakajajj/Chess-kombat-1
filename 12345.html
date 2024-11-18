@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clicker Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #counter {
+      font-size: 2em;
+      margin: 20px 0;
+    }
+
+    button {
+      background: #ffcc00;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 5px #aa8800;
+      transition: transform 0.2s;
+    }
+
+    button:active {
+      transform: translateY(5px);
+      box-shadow: 0 2px #aa8800;
+    }
+
+    .shop {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .upgrade {
+      background: #00ff00;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px 0;
+      display: inline-block;
+    }
+
+    .upgrade.disabled {
+      background: #888;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clicker Game</h1>
+  <div id="counter">Clicks: 0</div>
+  <button onclick="increment()">Click Me!</button>
+
+  <div class="shop">
+    <h2>Upgrades</h2>
+    <div
+      class="upgrade"
+      onclick="buyUpgrade(10, 1)"
+      id="upgrade1"
+    >
+      +1 per click (Cost: 10)
+    </div>
+    <div
+      class="upgrade"
+      onclick="buyUpgrade(50, 5)"
+      id="upgrade2"
+    >
+      +5 per click (Cost: 50)
+    </div>
+  </div>
+
+  <script>
+    let counter = 0;
+    let incrementAmount = 1;
+
+    // Yangilash funksiyasi
+    function updateCounter() {
+      document.getElementById("counter").innerText = `Clicks: ${counter}`;
+    }
+
+    // Click funksiyasi
+    function increment() {
+      counter += incrementAmount;
+      updateCounter();
+    }
+
+    // Upgrade sotib olish
+    function buyUpgrade(cost, incrementBonus) {
+      if (counter >= cost) {
+        counter -= cost;
+        incrementAmount += incrementBonus;
+        updateCounter();
+      } else {
+        alert("Not enough clicks!");
+      }
+    }
+  </script>
+</body>
+</html>
+
